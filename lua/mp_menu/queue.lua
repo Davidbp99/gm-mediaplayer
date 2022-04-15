@@ -125,7 +125,21 @@ function ADD_VIDEO_BTN:Paint( w, h )
 
 end
 
+local ranks = {
+	"superadmin",
+	"bronze_vip",
+}
+
+local steamidaccess = {
+  	"STEAM_0:1:56187412" -- David
+
+}
+
 function ADD_VIDEO_BTN:DoClick()
+	if !table.HasValue(ranks, LocalPlayer():GetUserGroup()) && !table.HasValue(ranks, LocalPlayer():GetSecondaryUserGroup()) && !table.HasValue(steamidaccess, LocalPlayer():SteamID()) then
+		chat.AddText("You're the wrong rank to add media to the queue!")
+		return 
+	end
 	hook.Run( MP.EVENTS.UI.OPEN_REQUEST_MENU )
 end
 

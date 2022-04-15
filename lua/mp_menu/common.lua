@@ -389,7 +389,20 @@ function SKIP_BTN:Init()
 	self:SetIcon( "mp-skip" )
 end
 
+local staffrank = {
+ "superadmin",
+ "head_manager",
+ "manager",
+ "senior_admin",
+ "admin",
+
+}
+
 function SKIP_BTN:DoClick()
+	if !table.HasValue(staffrank, LocalPlayer():GetUserGroup()) && !table.HasValue(staffrank, LocalPlayer():GetSecondaryUserGroup()) then
+		chat.AddText("You're the wrong rank to skip videos!")
+		return 
+	end
 	hook.Run( MP.EVENTS.UI.SKIP_MEDIA )
 end
 
