@@ -20,7 +20,7 @@ You can find the below to edit.
 
 
 
-```glua
+```lua
 -- common.lua
 
 local ranks = {
